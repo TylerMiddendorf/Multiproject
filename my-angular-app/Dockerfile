@@ -5,7 +5,7 @@ FROM node:alpine AS build
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json ./ 
 
 # Install dependencies
 RUN npm install
@@ -18,6 +18,9 @@ RUN npm run build --prod
 
 # Stage 2: Serve the application using Nginx
 FROM nginx:alpine
+
+# Copy the custom nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy built Angular app files to Nginx HTML folder
 COPY --from=build /usr/src/app/dist/my-first-angular-app /usr/share/nginx/html
