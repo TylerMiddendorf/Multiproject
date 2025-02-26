@@ -23,7 +23,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy built Angular app files to Nginx HTML folder
-COPY --from=build /usr/src/app/dist/my-first-angular-app /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/my-first-angular-app/browser /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
